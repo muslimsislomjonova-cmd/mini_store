@@ -1,0 +1,259 @@
+{
+  "banners": [
+    {
+      "id": 1,
+      "title": "Yangi Yozgi Kolleksiya",
+      "subtitle": "Eng so'nggi trendlar sizni kutmoqda",
+      "image": "https://picsum.photos/id/26/1200/400",
+      "ctaText": "Ko'rish"
+    },
+    {
+      "id": 2,
+      "title": "Elektronika Chegirmasi",
+      "subtitle": "Barcha gadjetlarda 20% chegirma",
+      "image": "https://picsum.photos/id/0/1200/400",
+      "ctaText": "Xarid qilish"
+    },
+    {
+      "id": 3,
+      "title": "Sport Mahsulotlari",
+      "subtitle": "Sog'lom hayot uchun eng yaxshi tanlov",
+      "image": "https://picsum.photos/id/43/1200/400",
+      "ctaText": "Batafsil"
+    }
+  ],
+
+  "categories": [
+    { "id": 1, "name": "Elektronika" },
+    { "id": 2, "name": "Kiyim" },
+    { "id": 3, "name": "Sport"},
+    { "id": 4, "name": "Uy-ro'zg'or" },
+    { "id": 5, "name": "Go'zallik"},
+    { "id": 6, "name": "Kitoblar" }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "title": "Apple MacBook Air M2",
+      "price": 14990000,
+      "oldPrice": 16500000,
+      "image": "https://picsum.photos/id/119/400/400",
+      "categoryId": 1,
+      "rating": 4.9,
+      "reviewCount": 128,
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "title": "Samsung Galaxy S24",
+      "price": 9990000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/160/400/400",
+      "categoryId": 1,
+      "rating": 4.7,
+      "reviewCount": 94,
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "title": "Sony WH-1000XM5 Naushnik",
+      "price": 3490000,
+      "oldPrice": 3990000,
+      "image": "https://picsum.photos/id/250/400/400",
+      "categoryId": 1,
+      "rating": 4.8,
+      "reviewCount": 210,
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "title": "iPad Pro 11\" M4",
+      "price": 11200000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/180/400/400",
+      "categoryId": 1,
+      "rating": 4.8,
+      "reviewCount": 76,
+      "inStock": false
+    },
+    {
+      "id": 5,
+      "title": "Nike Air Max 270 Krossovka",
+      "price": 1290000,
+      "oldPrice": 1590000,
+      "image": "https://picsum.photos/id/21/400/400",
+      "categoryId": 3,
+      "rating": 4.6,
+      "reviewCount": 312,
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "title": "Adidas Ultraboost 22",
+      "price": 1490000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/39/400/400",
+      "categoryId": 3,
+      "rating": 4.5,
+      "reviewCount": 187,
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "title": "Erkaklar Charm Ko'ylagi",
+      "price": 289000,
+      "oldPrice": 350000,
+      "image": "https://picsum.photos/id/64/400/400",
+      "categoryId": 2,
+      "rating": 4.3,
+      "reviewCount": 55,
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "title": "Ayollar Yozgi Ko'ylagi",
+      "price": 320000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/65/400/400",
+      "categoryId": 2,
+      "rating": 4.4,
+      "reviewCount": 98,
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "title": "Denim Jilet",
+      "price": 450000,
+      "oldPrice": 590000,
+      "image": "https://picsum.photos/id/96/400/400",
+      "categoryId": 2,
+      "rating": 4.2,
+      "reviewCount": 43,
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "title": "Futbol to'pi Adidas",
+      "price": 390000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/45/400/400",
+      "categoryId": 3,
+      "rating": 4.6,
+      "reviewCount": 72,
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "title": "Yoga Mati Pro",
+      "price": 220000,
+      "oldPrice": 270000,
+      "image": "https://picsum.photos/id/48/400/400",
+      "categoryId": 3,
+      "rating": 4.4,
+      "reviewCount": 134,
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "title": "Tefal Qozon To'plami",
+      "price": 980000,
+      "oldPrice": 1200000,
+      "image": "https://picsum.photos/id/292/400/400",
+      "categoryId": 4,
+      "rating": 4.7,
+      "reviewCount": 89,
+      "inStock": true
+    },
+    {
+      "id": 13,
+      "title": "Philips Changichli Supurgich",
+      "price": 1850000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/201/400/400",
+      "categoryId": 4,
+      "rating": 4.5,
+      "reviewCount": 61,
+      "inStock": false
+    },
+    {
+      "id": 14,
+      "title": "Dekorativ Yostiq To'plami",
+      "price": 175000,
+      "oldPrice": 210000,
+      "image": "https://picsum.photos/id/225/400/400",
+      "categoryId": 4,
+      "rating": 4.3,
+      "reviewCount": 47,
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "title": "The Ordinary Sero'yog' To'plam",
+      "price": 320000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/302/400/400",
+      "categoryId": 5,
+      "rating": 4.8,
+      "reviewCount": 256,
+      "inStock": true
+    },
+    {
+      "id": 16,
+      "title": "MAC Lipstick To'plami",
+      "price": 480000,
+      "oldPrice": 550000,
+      "image": "https://picsum.photos/id/431/400/400",
+      "categoryId": 5,
+      "rating": 4.6,
+      "reviewCount": 178,
+      "inStock": true
+    },
+    {
+      "id": 17,
+      "title": "Parfyum Hugo Boss 100ml",
+      "price": 890000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/315/400/400",
+      "categoryId": 5,
+      "rating": 4.7,
+      "reviewCount": 115,
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "title": "Atomic Habits — James Clear",
+      "price": 95000,
+      "oldPrice": 120000,
+      "image": "https://picsum.photos/id/24/400/400",
+      "categoryId": 6,
+      "rating": 4.9,
+      "reviewCount": 423,
+      "inStock": true
+    },
+    {
+      "id": 19,
+      "title": "The Psychology of Money",
+      "price": 89000,
+      "oldPrice": null,
+      "image": "https://picsum.photos/id/42/400/400",
+      "categoryId": 6,
+      "rating": 4.8,
+      "reviewCount": 198,
+      "inStock": true
+    },
+    {
+      "id": 20,
+      "title": "Deep Work — Cal Newport",
+      "price": 82000,
+      "oldPrice": 100000,
+      "image": "https://picsum.photos/id/smoking/400/400",
+      "categoryId": 6,
+      "rating": 4.7,
+      "reviewCount": 167,
+      "inStock": true
+    }
+  ],
+
+  "cart": []
+}

@@ -1,16 +1,19 @@
+// src/hooks/useProducts.js
+
 import { useQuery } from '@tanstack/react-query';
 
-export function useProducts(selectedCategory) {
+export function useProducts(selectedCategoryId) {
   return useQuery({
-    queryKey: ['products', selectedCategory],
+    queryKey: ['products', selectedCategoryId],
     queryFn: async () => {
-      const url = selectedCategory
-        ? `https://dummyjson.com/products/category/${selectedCategory}?limit=20`
-        : `https://dummyjson.com/products?limit=20`;
+
+      const url = selectedCategoryId
+        ? `http://localhost:3001/products?categoryId=${selectedCategoryId}`
+        : `http://localhost:3001/products`;
 
       const res = await fetch(url);
-      const data = await res.json();
-      return data.products;
+      if (!res.ok) throw new Error('Mahsulotlar yuklanmadi');
+      return res.json();
     },
   });
 }
