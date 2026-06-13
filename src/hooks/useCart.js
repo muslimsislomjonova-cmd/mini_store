@@ -1,160 +1,64 @@
-// src/hooks/useCart.js
-// Cart uchun barcha React Query hooklari
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiClient } from "../api/apiClient";
 
-const API_URL = 'http://localhost:3001';
+export const useCart = () => {
+  const queryClient = useQueryClient();
 
-// ─── 1. GET /cart ─────────────────────────────────────────────────────────
-export function useCartQuery() {
-  return useQuery({
-    queryKey: ['cart'],
+
+  const { data: cart = [], isError, refetch } = useQuery({
+    queryKey: ["cart"],
     queryFn: async () => {
-      const res = await fetch(`${API_URL}/cart`);
-      if (!res.ok) throw new Error("Savat yuklanmadi");
-      return res.json();
+      const response = await apiClient.get("/cart");
+      return response.data;
     },
-    staleTime: 0,
   });
-}
 
-// ─── 2. Savatga qo'shish (POST yoki PATCH) ────────────────────────────────
-export function useAddToCart() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
+  const addToCartMutation = useMutation({
     mutationFn: async (product) => {
-      const cartRes = await fetch(`${API_URL}/cart`);
-      const cart = await cartRes.json();
-      const existing = cart.find((item) => item.productId === product.productId);
-
-      if (existing) {
-        // Allaqachon bor — quantity oshiramiz
-        const res = await fetch(`${API_URL}/cart/${existing.id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ quantity: existing.quantity + 1 }),
-        });
-        if (!res.ok) throw new Error("Yangilashda xato");
-        return res.json();
-      } else {
-        // Yangi item
-        const res = await fetch(`${API_URL}/cart`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...product, quantity: 1 }),
-        });
-        if (!res.ok) throw new Error("Qo'shishda xato");
-        return res.json();
-      }
-    },
-
-    onMutate: async (product) => {
-      await queryClient.cancelQueries({ queryKey: ['cart'] });
-      const snapshot = queryClient.getQueryData(['cart']);
-
-      queryClient.setQueryData(['cart'], (old = []) => {
-        const existing = old.find((i) => i.productId === product.productId);
-        if (existing) {
-          return old.map((i) =>
-            i.productId === product.productId
-              ? { ...i, quantity: i.quantity + 1 }
-              : i
-          );
-        }
-        return [...old, { ...product, id: -1, quantity: 1 }];
+      const response = await apiClient.post("/cart", {
+        productId: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
       });
-
-      return { snapshot };
+      return response.data;
     },
-
-    onError: (_err, _product, context) => {
-      if (context?.snapshot) {
-        queryClient.setQueryData(['cart'], context.snapshot);
-      }
-    },
-
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
+    onSuccess: () => {
+      queryClient.invalidateQueries(["cart"]);
     },
   });
-}
 
-// ─── 3. DELETE /cart/:id ──────────────────────────────────────────────────
-export function useRemoveFromCart() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (cartItemId) => {
-      const res = await fetch(`${API_URL}/cart/${cartItemId}`, {
-        method: 'DELETE',
-      });
-      if (!res.ok) throw new Error("O'chirishda xato");
+  const removeFromCartMutation = useMutation({
+    mutationFn: async (id) => {
+      const response = await apiClient.delete(`/cart/${id}`);
+      return response.data;
     },
-
-    onMutate: async (cartItemId) => {
-      await queryClient.cancelQueries({ queryKey: ['cart'] });
-      const snapshot = queryClient.getQueryData(['cart']);
-      queryClient.setQueryData(['cart'], (old = []) =>
-        old.filter((i) => i.id !== cartItemId)
-      );
-      return { snapshot };
-    },
-
-    onError: (_err, _id, context) => {
-      if (context?.snapshot) {
-        queryClient.setQueryData(['cart'], context.snapshot);
-      }
-    },
-
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
+    onSuccess: () => {
+      queryClient.invalidateQueries(["cart"]); 
     },
   });
-}
 
-// ─── 4. PATCH /cart/:id — miqdor o'zgartirish ────────────────────────────
-export function useUpdateQty() {
-  const queryClient = useQueryClient();
+  const handleAddToCart = (product) => {
 
-  return useMutation({
-    mutationFn: async ({ cartItemId, newQty }) => {
-      if (newQty === 0) {
-        const res = await fetch(`${API_URL}/cart/${cartItemId}`, {
-          method: 'DELETE',
-        });
-        if (!res.ok) throw new Error("O'chirishda xato");
-        return;
-      }
-      const res = await fetch(`${API_URL}/cart/${cartItemId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ quantity: newQty }),
-      });
-      if (!res.ok) throw new Error("Yangilashda xato");
-      return res.json();
-    },
+    const allaqachonBor = cart.find((item) => item.productId === product.id);
 
-    onMutate: async ({ cartItemId, newQty }) => {
-      await queryClient.cancelQueries({ queryKey: ['cart'] });
-      const snapshot = queryClient.getQueryData(['cart']);
-      queryClient.setQueryData(['cart'], (old = []) => {
-        if (newQty === 0) return old.filter((i) => i.id !== cartItemId);
-        return old.map((i) =>
-          i.id === cartItemId ? { ...i, quantity: newQty } : i
-        );
-      });
-      return { snapshot };
-    },
+  
+    if (allaqachonBor) {
+      return; 
+    }
 
-    onError: (_err, _vars, context) => {
-      if (context?.snapshot) {
-        queryClient.setQueryData(['cart'], context.snapshot);
-      }
-    },
+    addToCartMutation.mutate(product);
+  };
 
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
-    },
-  });
-}
+  return {
+    cart,
+    isError,
+    refetch,
+    addToCart: handleAddToCart, 
+    removeFromCart: removeFromCartMutation.mutate,
+    isLoading: false, 
+    isAdding: false, 
+  };
+};

@@ -1,61 +1,65 @@
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useCurrentUser, useLogout } from '../hooks/useAuth';
 
+const Header = ({ cartCount }) => {
+  const { data: user } = useCurrentUser();
+  const logout = useLogout();
+  const navigate = useNavigate();
+  const token = localStorage.getItem('accessToken');
 
-import { Link } from 'react-router-dom';
-import { FiSearch, FiShoppingCart, FiHeart } from 'react-icons/fi';
-import { useCartQuery } from '../hooks/useCart';
-
-export const Header = () => {
-
-  const { data: items = [] } = useCartQuery();
-  const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const handleCartClick = () => {
+    if (!token) {
+      navigate('/login');
+    } else {
+      navigate('/cart');
+    }
+  };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+    <header className="flex justify-between items-center h-[70px] px-6 md:px-10 bg-[#141414] border-b border-[#222] text-white">
+     
+      <Link to="/" className="text-xl font-bold tracking-wide hover:text-purple-400 transition-colors">
+        MyStore
+      </Link>
 
-        
-        <Link to="/" className="text-2xl font-bold text-blue-600 no-underline">
-          MiniStore
-        </Link>
+   
+      <div className="flex items-center gap-5">
+     
+        <button 
+          onClick={handleCartClick} 
+          className="flex items-center gap-1.5 bg-none border-none text-white text-base font-medium cursor-pointer hover:text-purple-400 transition-colors relative"
+        >
+          Savat
+          {cartCount > 0 && (
+            <span className="absolute -top-2 -right-3 bg-purple-600 text-white text-xs w-5 h-5 rounded-full flex justify-center items-center font-bold shadow-[0_0_8px_rgba(168,85,247,0.6)]">
+              {cartCount}
+            </span>
+          )}
+        </button>
 
-
-        <nav className="hidden md:flex items-center space-x-6 text-gray-600 font-medium">
-          <Link to="/" className="hover:text-blue-600 no-underline">Bosh sahifa</Link>
-          <a href="#" className="hover:text-blue-600">Chegirmalar</a>
-          <a href="#" className="hover:text-blue-600">Yangi tovarlar</a>
-        </nav>
-
-        <div className="flex-1 max-w-md relative hidden sm:block">
-          <input
-            type="text"
-            placeholder="Mahsulotlarni qidirish..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
-          />
-          <FiSearch className="absolute left-3 top-3 text-gray-400" size={18} />
-        </div>
-
-    
-        <div className="flex items-center space-x-4">
-          <button className="text-gray-600 hover:text-blue-600 transition-colors">
-            <FiHeart size={22} />
-          </button>
-
-    
-          <Link
-            to="/cart"
-            className="text-gray-600 hover:text-blue-600 relative transition-colors"
+   
+        {user ? (
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-400 hidden sm:inline"> {user.name}</span>
+            <button 
+              onClick={logout} 
+              className="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg text-sm font-medium cursor-pointer transition-colors"
+            >
+              Chiqish
+            </button>
+          </div>
+        ) : (
+          <Link 
+            to="/login" 
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium rounded-lg shadow-[0_4px_12px_rgba(168,85,247,0.2)] transition-all"
           >
-            <FiShoppingCart size={22} />
-
-            {totalCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full font-bold leading-none">
-                {totalCount > 9 ? '9+' : totalCount}
-              </span>
-            )}
+            Kirish
           </Link>
-        </div>
-
+        )}
       </div>
     </header>
   );
 };
+
+export default Header;

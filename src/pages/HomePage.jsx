@@ -1,4 +1,3 @@
-// src/pages/HomePage.jsx
 
 import React, { useState } from 'react';
 import { HeroSwiper } from '../components/HeroSwiper';
@@ -14,7 +13,7 @@ export const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
       <div>
-        {/* Header olib tashlandi — App.jsx da allaqachon bor */}
+     
         <HeroSwiper />
         <Categories
           selectedCategory={selectedCategory}

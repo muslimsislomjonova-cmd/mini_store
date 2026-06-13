@@ -1,40 +1,56 @@
 {
   "banners": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Yangi Yozgi Kolleksiya",
       "subtitle": "Eng so'nggi trendlar sizni kutmoqda",
       "image": "https://picsum.photos/id/26/1200/400",
       "ctaText": "Ko'rish"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Elektronika Chegirmasi",
       "subtitle": "Barcha gadjetlarda 20% chegirma",
       "image": "https://picsum.photos/id/0/1200/400",
       "ctaText": "Xarid qilish"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Sport Mahsulotlari",
       "subtitle": "Sog'lom hayot uchun eng yaxshi tanlov",
       "image": "https://picsum.photos/id/43/1200/400",
       "ctaText": "Batafsil"
     }
   ],
-
   "categories": [
-    { "id": 1, "name": "Elektronika" },
-    { "id": 2, "name": "Kiyim" },
-    { "id": 3, "name": "Sport"},
-    { "id": 4, "name": "Uy-ro'zg'or" },
-    { "id": 5, "name": "Go'zallik"},
-    { "id": 6, "name": "Kitoblar" }
+    {
+      "id": "1",
+      "name": "Elektronika"
+    },
+    {
+      "id": "2",
+      "name": "Kiyim"
+    },
+    {
+      "id": "3",
+      "name": "Sport"
+    },
+    {
+      "id": "4",
+      "name": "Uy-ro'zg'or"
+    },
+    {
+      "id": "5",
+      "name": "Go'zallik"
+    },
+    {
+      "id": "6",
+      "name": "Kitoblar"
+    }
   ],
-
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Apple MacBook Air M2",
       "price": 14990000,
       "oldPrice": 16500000,
@@ -45,7 +61,7 @@
       "inStock": true
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Samsung Galaxy S24",
       "price": 9990000,
       "oldPrice": null,
@@ -56,7 +72,7 @@
       "inStock": true
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Sony WH-1000XM5 Naushnik",
       "price": 3490000,
       "oldPrice": 3990000,
@@ -67,7 +83,7 @@
       "inStock": true
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "iPad Pro 11\" M4",
       "price": 11200000,
       "oldPrice": null,
@@ -78,7 +94,7 @@
       "inStock": false
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Nike Air Max 270 Krossovka",
       "price": 1290000,
       "oldPrice": 1590000,
@@ -89,7 +105,7 @@
       "inStock": true
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Adidas Ultraboost 22",
       "price": 1490000,
       "oldPrice": null,
@@ -100,7 +116,7 @@
       "inStock": true
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Erkaklar Charm Ko'ylagi",
       "price": 289000,
       "oldPrice": 350000,
@@ -111,7 +127,7 @@
       "inStock": true
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Ayollar Yozgi Ko'ylagi",
       "price": 320000,
       "oldPrice": null,
@@ -122,7 +138,7 @@
       "inStock": true
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Denim Jilet",
       "price": 450000,
       "oldPrice": 590000,
@@ -133,7 +149,7 @@
       "inStock": true
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Futbol to'pi Adidas",
       "price": 390000,
       "oldPrice": null,
@@ -144,7 +160,7 @@
       "inStock": true
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Yoga Mati Pro",
       "price": 220000,
       "oldPrice": 270000,
@@ -155,7 +171,7 @@
       "inStock": true
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "Tefal Qozon To'plami",
       "price": 980000,
       "oldPrice": 1200000,
@@ -166,7 +182,7 @@
       "inStock": true
     },
     {
-      "id": 13,
+      "id": "13",
       "title": "Philips Changichli Supurgich",
       "price": 1850000,
       "oldPrice": null,
@@ -177,7 +193,7 @@
       "inStock": false
     },
     {
-      "id": 14,
+      "id": "14",
       "title": "Dekorativ Yostiq To'plami",
       "price": 175000,
       "oldPrice": 210000,
@@ -188,7 +204,7 @@
       "inStock": true
     },
     {
-      "id": 15,
+      "id": "15",
       "title": "The Ordinary Sero'yog' To'plam",
       "price": 320000,
       "oldPrice": null,
@@ -199,7 +215,7 @@
       "inStock": true
     },
     {
-      "id": 16,
+      "id": "16",
       "title": "MAC Lipstick To'plami",
       "price": 480000,
       "oldPrice": 550000,
@@ -210,7 +226,7 @@
       "inStock": true
     },
     {
-      "id": 17,
+      "id": "17",
       "title": "Parfyum Hugo Boss 100ml",
       "price": 890000,
       "oldPrice": null,
@@ -221,7 +237,7 @@
       "inStock": true
     },
     {
-      "id": 18,
+      "id": "18",
       "title": "Atomic Habits — James Clear",
       "price": 95000,
       "oldPrice": 120000,
@@ -232,7 +248,7 @@
       "inStock": true
     },
     {
-      "id": 19,
+      "id": "19",
       "title": "The Psychology of Money",
       "price": 89000,
       "oldPrice": null,
@@ -243,7 +259,7 @@
       "inStock": true
     },
     {
-      "id": 20,
+      "id": "20",
       "title": "Deep Work — Cal Newport",
       "price": 82000,
       "oldPrice": 100000,
@@ -254,6 +270,6 @@
       "inStock": true
     }
   ],
-
-  "cart": []
+  "cart": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

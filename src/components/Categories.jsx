@@ -1,53 +1,43 @@
-// src/components/Categories.jsx
+import { useCategories } from "../hooks/useCategories";
 
-import React from 'react';
-import { useCategories } from '../hooks/useCategories';
-
-export const Categories = ({ selectedCategory, onSelectCategory }) => {
-  const { data: categories, isLoading, error } = useCategories();
-
-  if (isLoading) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 my-8 h-16 bg-gray-100 animate-pulse rounded-xl"></div>
-    );
-  }
-
-  if (error) return null;
+export const Categories = ({
+  selectedCategory,
+  onSelectCategory,
+}) => {
+  const { categories } = useCategories();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 my-8">
-      <h2 className="text-xl font-bold mb-4 text-gray-800">Kategoriyalar</h2>
-      <div className="flex gap-3 overflow-x-auto pb-2">
+    <section className="max-w-7xl mx-auto px-4 py-8">
+      <h2 className="text-2xl font-bold mb-4">
+        Kategoriyalar
+      </h2>
 
-
+      <div className="flex gap-4 overflow-x-auto pb-2">
         <button
           onClick={() => onSelectCategory(null)}
-          className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 border rounded-full font-medium text-sm transition ${
+          className={`px-5 py-3 rounded-lg whitespace-nowrap ${
             selectedCategory === null
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 hover:border-blue-400'
+              ? "bg-blue-600 text-white"
+              : "bg-white border"
           }`}
         >
-           Barchasi
+          Barchasi
         </button>
 
- 
-        {categories?.map((cat) => (
+        {categories?.map((category) => (
           <button
-            key={cat.id}
-            onClick={() => onSelectCategory(cat.id)}
-            className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 border rounded-full font-medium text-sm transition ${
-              selectedCategory === cat.id
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-white text-gray-700 hover:border-blue-400'
+            key={category.id}
+            onClick={() => onSelectCategory(category.id)}
+            className={`px-5 py-3 rounded-lg whitespace-nowrap ${
+              selectedCategory === category.id
+                ? "bg-blue-600 text-white"
+                : "bg-white border"
             }`}
           >
-            <span>{cat.icon}</span>
-            <span>{cat.name}</span>
+            {category.icon} {category.name}
           </button>
         ))}
-
       </div>
-    </div>
+    </section>
   );
 };
