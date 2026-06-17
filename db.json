@@ -270,6 +270,31 @@
       "inStock": true
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "productId": "5",
+      "title": "Nike Air Max 270 Krossovka",
+      "price": 1290000,
+      "image": "https://picsum.photos/id/21/400/400",
+      "quantity": 2,
+      "id": "Ntm7xlJez5A"
+    },
+    {
+      "productId": "1",
+      "title": "Apple MacBook Air M2",
+      "price": 14990000,
+      "image": "https://picsum.photos/id/119/400/400",
+      "quantity": 2,
+      "id": "JpNKdSYkzBU"
+    },
+    {
+      "productId": "9",
+      "title": "Denim Jilet",
+      "price": 450000,
+      "image": "https://picsum.photos/id/96/400/400",
+      "quantity": 1,
+      "id": "sOzi6pvBgf4"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

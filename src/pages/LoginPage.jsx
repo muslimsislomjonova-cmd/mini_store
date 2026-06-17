@@ -79,7 +79,7 @@ const LoginPage = () => {
             type="submit"
             className="p-3 mt-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-medium text-base cursor-pointer transition-all shadow-[0_4px_12px_rgba(168,85,247,0.2)]"
           >
-            Kirish
+            chiqish
           </button>
         </form>
 

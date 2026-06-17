@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 
 export const CartPage = () => {
-  const { cart, isLoading, isError, removeFromCart, refetch } = useCart();
+  const { cart, isLoading, isError, removeFromCart, updateQuantity, refetch } = useCart();
 
+  // Jami narxni hisoblash: narxi * soni
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  // Umumiy mahsulotlar sonini hisoblash
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
   if (isLoading) return <p className="text-center p-10">Yuklanmoqda...</p>;
   
@@ -22,7 +25,7 @@ export const CartPage = () => {
   if (cart.length === 0) {
     return (
       <div className="text-center p-10">
-        <h2 className="text-xl font-bold">Savat bosh</h2>
+        <h2 className="text-xl font-bold">Savat bo'sh</h2>
         <Link to="/" className="text-blue-500 underline mt-2 inline-block">Xarid qilish</Link>
       </div>
     );
@@ -34,6 +37,7 @@ export const CartPage = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
     
+        {/* Chap tomon: Savatdagi mahsulotlar ro'yxati */}
         <div className="md:col-span-2 space-y-4">
           {cart.map((item) => (
             <div key={item.id} className="border p-4 rounded-xl flex items-center justify-between bg-white shadow-sm">
@@ -41,26 +45,55 @@ export const CartPage = () => {
                 <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded" />
                 <div>
                   <h3 className="font-medium">{item.title}</h3>
-                  <p className="text-blue-600 font-bold">{item.price.toLocaleString()} som</p>
+                  {/* Bir dona mahsulotning umumiy narxi (narxi * soni) */}
+                  <p className="text-blue-600 font-bold">
+                    {(item.price * (item.quantity || 1)).toLocaleString()} som
+                  </p>
                 </div>
               </div>
 
-              <button 
-                onClick={() => removeFromCart(item.id)} 
-                className="text-red-500 border border-red-200 px-3 py-1 rounded hover:bg-red-50"
-              >
-                Ochirish
-              </button>
+              {/* O'ng tomon: Soni (Count) va O'chirish tugmalari */}
+              <div className="flex items-center gap-6">
+                <div className="flex items-center border rounded-lg overflow-hidden bg-gray-50">
+                  <button 
+                    onClick={() => {
+                      if (item.quantity > 1) {
+                        updateQuantity(item.id, item.quantity - 1);
+                      } else {
+                        removeFromCart(item.id); // Soni 1 tadan kamaysa savatdan o'chadi
+                      }
+                    }}
+                    className="px-3 py-1 bg-gray-200 hover:bg-gray-300 font-bold"
+                  >
+                    -
+                  </button>
+                  <span className="px-4 font-medium">{item.quantity || 1}</span>
+                  <button 
+                    onClick={() => updateQuantity(item.id, (item.quantity || 1) + 1)}
+                    className="px-3 py-1 bg-gray-200 hover:bg-gray-300 font-bold"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <button 
+                  onClick={() => removeFromCart(item.id)} 
+                  className="text-red-500 border border-red-200 px-3 py-1 rounded hover:bg-red-50 text-sm"
+                >
+                  O'chirish
+                </button>
+              </div>
+
             </div>
           ))}
         </div>
 
-     
+        {/* O'ng tomon: Buyurtma hisob-kitobi */}
         <div className="border p-6 rounded-xl bg-gray-50 h-fit space-y-4">
           <h2 className="text-lg font-bold border-b pb-2">Buyurtma tafsiloti</h2>
           <div className="flex justify-between">
             <span>Tovarlar soni:</span>
-            <span className="font-bold">{cart.length} ta</span>
+            <span className="font-bold">{totalItems} ta</span>
           </div>
           <div className="flex justify-between text-lg font-bold border-t pt-2">
             <span>Jami:</span>
